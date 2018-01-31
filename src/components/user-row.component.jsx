@@ -4,6 +4,7 @@ class UserRow extends Component {
 
     render() {
 
+        console.log('Rendering in User Row');
         var record = this.props.data;
         var rowId = this.props.id;
 
@@ -14,7 +15,36 @@ class UserRow extends Component {
                 <td>{record.age}</td>
             </tr>
         );
+    }
 
+    componentWillUpdate() {
+        console.log('User Row componentWillUpdate');
+    }
+
+    componentDidUpdate() {
+        this.myName =  this.props.data.name;
+        console.log('User Row componentDidUpdate');
+    }
+
+    componentDidMount() {
+        this.myName =  this.props.data.name;
+        console.log('User Row componentDidMount');
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+
+        if(this.myName === nextProps.data.name) {
+            return false;
+        }
+
+        return true;
+    }
+
+    componentWillReceiveProps() {
+
+
+        console.log('In User Row');
+        console.log(arguments);
     }
 
     getClassFromAge(age) {
